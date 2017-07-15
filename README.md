@@ -25,6 +25,10 @@ Tools used on the sample project
 [7]: https://currencylayer.com/
 
 
+# Kotlin Devises architecture
+![](./art/currency-arch.png)
+
+
 # Demo
 ![](./art/demo.png)
 
