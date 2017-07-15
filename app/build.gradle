@@ -35,12 +35,12 @@ dependencies {
 
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-  compile "android.arch.lifecycle:runtime:1.0.0-alpha3"
-  compile "android.arch.lifecycle:extensions:1.0.0-alpha3"
-  kapt "android.arch.lifecycle:compiler:1.0.0-alpha3"
-  compile "android.arch.persistence.room:runtime:1.0.0-alpha3"
-  kapt "android.arch.persistence.room:compiler:1.0.0-alpha3"
-  compile "android.arch.persistence.room:rxjava2:1.0.0-alpha3"
+  compile "android.arch.lifecycle:runtime:1.0.0-alpha4"
+  compile "android.arch.lifecycle:extensions:1.0.0-alpha4"
+  kapt "android.arch.lifecycle:compiler:1.0.0-alpha4"
+  compile "android.arch.persistence.room:runtime:1.0.0-alpha4"
+  kapt "android.arch.persistence.room:compiler:1.0.0-alpha4"
+  compile "android.arch.persistence.room:rxjava2:1.0.0-alpha4"
 
   compile 'com.squareup.retrofit2:retrofit:2.3.0'
   compile "com.squareup.retrofit2:converter-gson:2.3.0"
