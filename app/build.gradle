@@ -35,12 +35,13 @@ dependencies {
 
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-  compile "android.arch.lifecycle:runtime:1.0.0-alpha4"
-  compile "android.arch.lifecycle:extensions:1.0.0-alpha4"
-  kapt "android.arch.lifecycle:compiler:1.0.0-alpha4"
-  compile "android.arch.persistence.room:runtime:1.0.0-alpha4"
-  kapt "android.arch.persistence.room:compiler:1.0.0-alpha4"
-  compile "android.arch.persistence.room:rxjava2:1.0.0-alpha4"
+  String archVersion = '1.0.0-alpha4'
+  compile "android.arch.lifecycle:runtime:$archVersion"
+  compile "android.arch.lifecycle:extensions:$archVersion"
+  kapt "android.arch.lifecycle:compiler:$archVersion"
+  compile "android.arch.persistence.room:runtime:$archVersion"
+  kapt "android.arch.persistence.room:compiler:$archVersion"
+  compile "android.arch.persistence.room:rxjava2:$archVersion"
 
   compile 'com.squareup.retrofit2:retrofit:2.3.0'
   compile "com.squareup.retrofit2:converter-gson:2.3.0"
@@ -48,9 +49,10 @@ dependencies {
   compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
   compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
-  compile 'com.android.support:appcompat-v7:25.3.1'
-  compile 'com.android.support:design:25.3.1'
-  compile 'com.android.support:support-vector-drawable:25.3.1'
+  String supportVersion = '25.3.1'
+  compile "com.android.support:appcompat-v7:$supportVersion"
+  compile "com.android.support:design:$supportVersion"
+  compile "com.android.support:support-vector-drawable:$supportVersion"
   compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
   String daggerVersion = '2.10'
