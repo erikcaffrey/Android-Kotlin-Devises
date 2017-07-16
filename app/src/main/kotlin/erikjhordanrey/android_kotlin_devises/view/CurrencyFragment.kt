@@ -78,7 +78,7 @@ class CurrencyFragment : LifecycleFragment() {
   private fun populateSpinnerAdapter() {
     val currencies = ArrayList<String>()
     currenciesAdapter = ArrayAdapter(activity, R.layout.item_spinner, currencies)
-    currencyViewModel?.getCurrencyList()?.observe(this, Observer { currencyList ->
+    currencyViewModel?.loadCurrencyList()?.observe(this, Observer { currencyList ->
       currencyList!!.forEach {
         currencies.add(it.code + "  " + it.country)
       }

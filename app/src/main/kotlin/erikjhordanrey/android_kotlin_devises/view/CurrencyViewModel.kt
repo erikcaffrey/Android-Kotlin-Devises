@@ -34,28 +34,22 @@ class CurrencyViewModel : ViewModel() {
 
   init {
     initializeDagger()
-    loadCurrencyList()
-  }
-
-  fun getCurrencyList(): LiveData<List<Currency>>? {
-    return liveCurrencyData
   }
 
   fun getAvailableExchange(currencies: String): LiveData<AvailableExchange>? {
     liveAvailableExchange = null
     liveAvailableExchange = MutableLiveData<AvailableExchange>()
     liveAvailableExchange = currencyRepository.getAvailableExchange(currencies)
-
-
     return liveAvailableExchange
   }
 
 
-  private fun loadCurrencyList() {
+  fun loadCurrencyList(): LiveData<List<Currency>>? {
     if (liveCurrencyData == null) {
       liveCurrencyData = MutableLiveData<List<Currency>>()
       liveCurrencyData = currencyRepository.getCurrencyList()
     }
+    return liveCurrencyData
   }
 
   private fun initializeDagger() = CurrencyApplication.appComponent.inject(this)
