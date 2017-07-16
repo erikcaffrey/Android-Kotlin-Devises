@@ -64,6 +64,7 @@ class CurrencyFragment : LifecycleFragment() {
 
   private fun initViewModel() {
     currencyViewModel = ViewModelProviders.of(this).get(CurrencyViewModel::class.java)
+    currencyViewModel?.initLocalCurrencies()
   }
 
   private fun initUI() {

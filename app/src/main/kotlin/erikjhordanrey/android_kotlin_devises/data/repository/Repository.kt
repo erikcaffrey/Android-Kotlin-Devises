@@ -19,9 +19,14 @@ package erikjhordanrey.android_kotlin_devises.data.repository
 import android.arch.lifecycle.LiveData
 import erikjhordanrey.android_kotlin_devises.domain.AvailableExchange
 import erikjhordanrey.android_kotlin_devises.domain.Currency
+import io.reactivex.Flowable
 
 
 interface Repository {
+
+  fun getTotalCurrencies(): Flowable<Int>
+
+  fun addCurrencies()
 
   fun getCurrencyList(): LiveData<List<Currency>>
 
