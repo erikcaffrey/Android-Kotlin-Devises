@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion "26.0.0"
+  compileSdkVersion 26
+  buildToolsVersion "26.0.2"
   defaultConfig {
     applicationId "erikjhordanrey.android_kotlin_devises"
     minSdkVersion 15
-    targetSdkVersion 25
+    targetSdkVersion 26
     versionCode 1
     versionName "1.0"
     vectorDrawables.useSupportLibrary = true
@@ -35,7 +36,7 @@ dependencies {
 
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-  String archVersion = '1.0.0-alpha4'
+  String archVersion = '1.0.0-rc1'
   compile "android.arch.lifecycle:runtime:$archVersion"
   compile "android.arch.lifecycle:extensions:$archVersion"
   kapt "android.arch.lifecycle:compiler:$archVersion"
@@ -49,7 +50,7 @@ dependencies {
   compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
   compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
-  String supportVersion = '25.3.1'
+  String supportVersion = '26+'
   compile "com.android.support:appcompat-v7:$supportVersion"
   compile "com.android.support:design:$supportVersion"
   compile "com.android.support:support-vector-drawable:$supportVersion"
