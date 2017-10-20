@@ -23,8 +23,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import erikjhordanrey.android_kotlin_devises.R
+import kotlinx.android.synthetic.main.about_fragment.*
 
 
 class AboutFragment : Fragment() {
@@ -38,17 +38,17 @@ class AboutFragment : Fragment() {
   }
 
   override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    val view = inflater?.inflate(R.layout.about_fragment, container, false)
-    initUI(view)
-    return view
+    return inflater?.inflate(R.layout.about_fragment, container, false)
   }
 
-  private fun initUI(view: View?) {
-    val showPostText = view?.findViewById(R.id.show_me_post) as TextView
-    val showSourceText = view.findViewById(R.id.show_me_code) as TextView
+  override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    initUI()
+  }
 
-    showPostText.setOnClickListener { startActivityActionView(PROJECT_BLOG_POST) }
-    showSourceText.setOnClickListener { startActivityActionView(PROJECT_SOURCE_CODE) }
+  private fun initUI() {
+    show_me_post.setOnClickListener { startActivityActionView(PROJECT_BLOG_POST) }
+    show_me_code.setOnClickListener { startActivityActionView(PROJECT_SOURCE_CODE) }
   }
 
 

@@ -16,30 +16,28 @@
 
 package erikjhordanrey.android_kotlin_devises.view
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.TextView
+import android.widget.Toast
 import erikjhordanrey.android_kotlin_devises.R
+import kotlinx.android.synthetic.main.currency_fragment.*
 
 
-class CurrencyFragment : LifecycleFragment() {
+class CurrencyFragment : Fragment() {
 
   companion object {
     fun newInstance() = CurrencyFragment()
   }
-
-  private var fromCurrencySpinner: Spinner? = null
-  private var toCurrencySpinner: Spinner? = null
-  private var currencyEdit: EditText? = null
-  private var convertButton: Button? = null
 
   private var currenciesAdapter: ArrayAdapter<String>? = null
   private var currencyFrom: String? = null
@@ -68,10 +66,6 @@ class CurrencyFragment : LifecycleFragment() {
   }
 
   private fun initUI() {
-    fromCurrencySpinner = view?.findViewById(R.id.from_currency_spinner) as Spinner
-    toCurrencySpinner = view?.findViewById(R.id.to_currency_spinner) as Spinner
-    currencyEdit = view?.findViewById(R.id.currency_edit) as EditText
-    convertButton = view?.findViewById(R.id.convert_button) as Button
     initSpinners()
     initConvertButton()
   }
@@ -90,22 +84,22 @@ class CurrencyFragment : LifecycleFragment() {
   }
 
   private fun initSpinners() {
-    fromCurrencySpinner?.adapter = currenciesAdapter
-    fromCurrencySpinner?.setSelection(0)
-    toCurrencySpinner?.adapter = currenciesAdapter
-    toCurrencySpinner?.setSelection(0)
+    from_currency_spinner.adapter = currenciesAdapter
+    from_currency_spinner.setSelection(0)
+    to_currency_spinner.adapter = currenciesAdapter
+    to_currency_spinner.setSelection(0)
   }
 
   private fun initConvertButton() {
-    convertButton?.setOnClickListener { convert() }
+    convert_button.setOnClickListener { convert() }
   }
 
   // You can move all this logic to the view model
 
   private fun convert() {
-    val quantity = currencyEdit?.text.toString()
-    currencyFrom = getCurrencyCode(fromCurrencySpinner?.selectedItem.toString())
-    currencyTo = getCurrencyCode(toCurrencySpinner?.selectedItem.toString())
+    val quantity = currency_edit.text.toString()
+    currencyFrom = getCurrencyCode(from_currency_spinner.selectedItem.toString())
+    currencyTo = getCurrencyCode(to_currency_spinner.selectedItem.toString())
     val currencies = currencyFrom + "," + currencyTo
 
     if (quantity.isNotEmpty() && currencyFrom != currencyTo) {

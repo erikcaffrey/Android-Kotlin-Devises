@@ -16,15 +16,16 @@
 
 package erikjhordanrey.android_kotlin_devises.view
 
-import android.arch.lifecycle.LifecycleActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import erikjhordanrey.android_kotlin_devises.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 
-class NavigationActivity : LifecycleActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class NavigationActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +53,6 @@ class NavigationActivity : LifecycleActivity(), BottomNavigationView.OnNavigatio
   }
 
   private fun initNavigation() {
-    val navigation = findViewById(R.id.navigation) as BottomNavigationView
     navigation.setOnNavigationItemSelectedListener(this)
   }
 
