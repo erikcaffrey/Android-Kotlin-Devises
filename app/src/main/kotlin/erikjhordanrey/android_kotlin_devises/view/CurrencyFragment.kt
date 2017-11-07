@@ -51,11 +51,11 @@ class CurrencyFragment : Fragment() {
     populateSpinnerAdapter()
   }
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    return inflater?.inflate(R.layout.currency_fragment, container, false)
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    return inflater.inflate(R.layout.currency_fragment, container, false)
   }
 
-  override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     initUI()
   }
@@ -133,9 +133,9 @@ class CurrencyFragment : Fragment() {
   private fun showResult(result: String) {
     val builder: AlertDialog.Builder
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      builder = AlertDialog.Builder(context, R.style.AppCompatAlertDialogStyle)
+      builder = AlertDialog.Builder(context!!, R.style.AppCompatAlertDialogStyle)
     } else {
-      builder = AlertDialog.Builder(context)
+      builder = AlertDialog.Builder(context!!)
     }
 
     val setMessage = TextView(activity)

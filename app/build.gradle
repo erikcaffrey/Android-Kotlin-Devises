@@ -4,12 +4,12 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion 26
-  buildToolsVersion "26.0.2"
+  compileSdkVersion 27
+  buildToolsVersion "27.0.0"
   defaultConfig {
     applicationId "erikjhordanrey.android_kotlin_devises"
     minSdkVersion 15
-    targetSdkVersion 26
+    targetSdkVersion 27
     versionCode 1
     versionName "1.0"
     vectorDrawables.useSupportLibrary = true
@@ -36,7 +36,7 @@ dependencies {
 
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-  String archVersion = '1.0.0-rc1'
+  String archVersion = '1.0.0'
   compile "android.arch.lifecycle:runtime:$archVersion"
   compile "android.arch.lifecycle:extensions:$archVersion"
   kapt "android.arch.lifecycle:compiler:$archVersion"
@@ -47,10 +47,10 @@ dependencies {
   compile 'com.squareup.retrofit2:retrofit:2.3.0'
   compile "com.squareup.retrofit2:converter-gson:2.3.0"
   compile 'com.squareup.okhttp3:okhttp:3.8.1'
-  compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
-  compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+  compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+  compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 
-  String supportVersion = '26+'
+  String supportVersion = '27.0.0'
   compile "com.android.support:appcompat-v7:$supportVersion"
   compile "com.android.support:design:$supportVersion"
   compile "com.android.support:support-vector-drawable:$supportVersion"
@@ -61,5 +61,5 @@ dependencies {
   kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
   compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-  compile 'io.reactivex.rxjava2:rxjava:2.0.8'
+  compile 'io.reactivex.rxjava2:rxjava:2.1.3'
 }
