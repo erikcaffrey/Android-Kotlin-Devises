@@ -28,6 +28,7 @@ import io.reactivex.Completable
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -36,6 +37,7 @@ class CurrencyViewModel : ViewModel() {
 
   @Inject lateinit var currencyRepository: CurrencyRepository
 
+  private val compositeDisposable = CompositeDisposable()
   private var liveCurrencyData: LiveData<List<Currency>>? = null
   private var liveAvailableExchange: LiveData<AvailableExchange>? = null
 
@@ -61,7 +63,7 @@ class CurrencyViewModel : ViewModel() {
   }
 
   fun initLocalCurrencies() {
-    currencyRepository.getTotalCurrencies()
+    val disposable = currencyRepository.getTotalCurrencies()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe {
@@ -71,6 +73,14 @@ class CurrencyViewModel : ViewModel() {
             Log.i(CurrencyRepository::class.java.simpleName, "DataSource has been already Populated")
           }
         }
+    compositeDisposable.add(disposable)
+  }
+
+  fun unSubscribeViewModel() {
+    for (disposable in currencyRepository.allCompositeDisposable) {
+      compositeDisposable.addAll(disposable)
+    }
+    compositeDisposable.clear()
   }
 
   private fun isRoomEmpty(currenciesTotal: Int) = currenciesTotal == 0
@@ -81,7 +91,7 @@ class CurrencyViewModel : ViewModel() {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(object : CompletableObserver {
           override fun onSubscribe(@NonNull d: Disposable) {
-
+            compositeDisposable.add(d)
           }
 
           override fun onComplete() {
