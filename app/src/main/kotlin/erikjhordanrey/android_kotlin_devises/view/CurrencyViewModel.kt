@@ -16,8 +16,11 @@
 
 package erikjhordanrey.android_kotlin_devises.view
 
+import android.arch.lifecycle.Lifecycle.Event.ON_DESTROY
+import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.OnLifecycleEvent
 import android.arch.lifecycle.ViewModel
 import android.util.Log
 import erikjhordanrey.android_kotlin_devises.data.repository.CurrencyRepository
@@ -33,7 +36,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class CurrencyViewModel : ViewModel() {
+class CurrencyViewModel : ViewModel(), LifecycleObserver {
 
   @Inject lateinit var currencyRepository: CurrencyRepository
 
@@ -76,7 +79,8 @@ class CurrencyViewModel : ViewModel() {
     compositeDisposable.add(disposable)
   }
 
-  fun unSubscribeViewModel() {
+  @OnLifecycleEvent(ON_DESTROY)
+  private fun unSubscribeViewModel() {
     for (disposable in currencyRepository.allCompositeDisposable) {
       compositeDisposable.addAll(disposable)
     }
@@ -104,6 +108,11 @@ class CurrencyViewModel : ViewModel() {
             Log.e(CurrencyRepository::class.java.simpleName, "DataSource hasn't been Populated")
           }
         })
+  }
+
+  override fun onCleared() {
+    unSubscribeViewModel()
+    super.onCleared()
   }
 
 

@@ -61,13 +61,10 @@ class CurrencyFragment : Fragment() {
     populateSpinnerAdapter()
   }
 
-  override fun onDestroyView() {
-    currencyViewModel?.unSubscribeViewModel()
-    super.onDestroyView()
-  }
 
   private fun initViewModel() {
     currencyViewModel = ViewModelProviders.of(this).get(CurrencyViewModel::class.java)
+    currencyViewModel?.let { lifecycle.addObserver(it) }
     currencyViewModel?.initLocalCurrencies()
   }
 
