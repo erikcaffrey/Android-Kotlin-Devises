@@ -40,6 +40,16 @@ class CurrencyViewModel(private val currencyRepository: CurrencyRepository) : Vi
     private var liveCurrencyData: LiveData<List<Currency>>? = null
     private var liveAvailableExchange: LiveData<AvailableExchange>? = null
 
+    val isProgressVisible = MutableLiveData<Boolean>().apply { value = false }
+
+    fun progressVisible() {
+        isProgressVisible.value = true
+    }
+
+    fun progressInvisible() {
+        isProgressVisible.value = false
+    }
+
     fun getAvailableExchange(currencies: String): LiveData<AvailableExchange>? {
         liveAvailableExchange = null
         liveAvailableExchange = MutableLiveData()
