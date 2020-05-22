@@ -21,6 +21,8 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
@@ -57,6 +59,10 @@ class CurrencyFragment : Fragment() {
         initViewModel()
         initUI()
         populateSpinnerAdapter()
+
+        currencyViewModel.isProgressVisible.observe(viewLifecycleOwner, Observer { visible ->
+            binding.progressBar.visibility = if (visible) VISIBLE else GONE
+        })
     }
 
     private fun initializeDagger() {
@@ -93,7 +99,10 @@ class CurrencyFragment : Fragment() {
     }
 
     private fun initConvertButton() {
-        binding.convertButton.setOnClickListener { convert() }
+        binding.convertButton.setOnClickListener {
+            convert()
+            currencyViewModel.progressVisible()
+        }
     }
 
     // You can move all this logic to the view model
@@ -112,6 +121,7 @@ class CurrencyFragment : Fragment() {
             })
 
         } else {
+            currencyViewModel.progressInvisible()
             Toast.makeText(activity, "Could not convert.", Toast.LENGTH_SHORT).show()
         }
     }
@@ -131,7 +141,7 @@ class CurrencyFragment : Fragment() {
 
         val result = quantity.toString() + " " + fromCurrencyKey + " = " + exchangeResult.format(4) + " " + toCurrencyKey
         showResult(result)
-
+        currencyViewModel.progressInvisible()
     }
 
     private fun showResult(result: String) {

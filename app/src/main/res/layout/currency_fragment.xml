@@ -50,6 +50,11 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
 
         <Spinner
             android:id="@+id/from_currency_spinner"
